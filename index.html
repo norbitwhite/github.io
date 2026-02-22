@@ -143,14 +143,27 @@ animation-play-state:paused;
 }
 
 /* CARDS */
-.container{
-max-width:1000px;
-margin:auto;
-padding:60px 20px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:40px;
+.cards-mini{
+display:flex;
+gap:15px;
+padding:20px;
 }
+
+.card.mini{
+flex:1;
+}
+
+.card.mini img{
+height:150px;
+}
+
+/* Responsivo celular */
+@media(max-width:768px){
+.cards-mini{
+flex-direction:column;
+}
+}
+
 
 .card{
 background:linear-gradient(160deg,#111,#1c1c1c);
@@ -265,94 +278,149 @@ width:35px;
 
 </header>
 
-<section class="container">
+<section class="cards-mini">
 
-<div class="card">
-<img src="logo.jpg">
-<div class="card-content">
-<h2>Criação de Logo</h2>
-<p>Logo profissional e personalizada.</p>
-<div class="price">R$ 15</div>
-<button class="btn-neon" onclick="window.open('https://wa.me/5521983747028?text=Olá, quero fechar a Logo com você')">
-Chamar no WhatsApp
-</button>
-</div>
-</div>
+  <div class="card mini">
+    <img src="logo.jpg">
 
-<div class="card">
-<img src="thumb.jpg">
-<div class="card-content">
-<h2>Thumbnail YouTube</h2>
-<p>Thumbnail impactante estilo gamer.</p>
-<div class="price">R$ 10</div>
-<button class="btn-neon" onclick="window.open('https://wa.me/5521983747028?text=Olá, quero fechar a Thumbnail R$10')">
-Chamar no WhatsApp
-</button>
-</div>
-</div>
+    <div class="card-content">
+      <h2>Criação de Logo</h2>
+      <p>Logo profissional e personalizada para streamers.</p>
 
-</section>
-<!-- SEÇÃO DE AVALIAÇÕES -->
-<section style="padding:60px 20px; background:#111; text-align:center;">
+      <div class="price">R$ 15</div>
 
-  <h2 style="color:white; font-size:32px; margin-bottom:40px;">
-    AVALIAÇÕES POSITIVAS 
-  </h2>
-
-  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:25px; max-width:1200px; margin:auto;">
-
-    <!-- Avaliação 1 -->
-    <div style="background:#1c1c1c; padding:25px; border-radius:15px; width:300px; box-shadow:0 0 15px rgba(128,0,255,0.4);">
-      <h3 style="color:white;">@dutyred</h3>
-      <div style="color:gold; font-size:20px;">★★★★★</div>
-      <p style="color:#ccc; margin-top:15px;">
-        Mano, a thumbnail ficou INSANA! Muito profissional, superou minhas expectativas.
-      </p>
+      <button class="btn-neon"
+      onclick="window.location.href='https://wa.me/5599999999999'">
+      CHAMAR NO WHATSAPP
+      </button>
     </div>
+  </div>
 
-    <!-- Avaliação 2 -->
-    <div style="background:#1c1c1c; padding:25px; border-radius:15px; width:300px; box-shadow:0 0 15px rgba(128,0,255,0.4);">
-      <h3 style="color:white;">@jorjet777</h3>
-      <div style="color:gold; font-size:20px;">★★★★★</div>
-      <p style="color:#ccc; margin-top:15px;">
-        Melhor designer que já contratei! Banner da live ficou muito top.
-      </p>
+  <div class="card mini">
+    <img src="banner.jpg">
+
+    <div class="card-content">
+      <h2>Banner Gamer</h2>
+      <p>Arte profissional para YouTube e Twitch.</p>
+
+      <div class="price">R$ 20</div>
+
+      <button class="btn-neon"
+      onclick="window.location.href='https://wa.me/5521983747028'">
+      CHAMAR NO WHATSAPP
+      </button>
     </div>
-
-    <!-- Avaliação 3 -->
-    <div style="background:#1c1c1c; padding:25px; border-radius:15px; width:300px; box-shadow:0 0 15px rgba(128,0,255,0.4);">
-      <h3 style="color:white;">@wellinhojoga</h3>
-      <div style="color:gold; font-size:20px;">★★★★★</div>
-      <p style="color:#ccc; margin-top:15px;">
-        Trabalho rápido e muito caprichado. Recomendo demais!
-      </p>
-    </div>
-
-    <!-- Avaliação 4 -->
-    <div style="background:#1c1c1c; padding:25px; border-radius:15px; width:300px; box-shadow:0 0 15px rgba(128,0,255,0.4);">
-      <h3 style="color:white;">@gordinhodocod00</h3>
-      <div style="color:gold; font-size:20px;">★★★★★</div>
-      <p style="color:#ccc; margin-top:15px;">
-        O cara é diferenciado! Minha logo ficou com cara de time profissional.
-      </p>
-    </div>
-
-    <!-- Avaliação 5 -->
-    <div style="background:#1c1c1c; padding:25px; border-radius:15px; width:300px; box-shadow:0 0 15px rgba(128,0,255,0.4);">
-      <h3 style="color:white;">@rochaarch</h3>
-      <div style="color:gold; font-size:20px;">★★★★★</div>
-      <p style="color:#ccc; margin-top:15px;">
-        Design muito bem feito, organizado e chamativo. Vale cada real!
-      </p>
-    </div>
-
   </div>
 
 </section>
-</section>
+<!-- SEÇÃO DE AVALIAÇÕES -->
 
-<footer>
-© 2026 Norbit White Design - Todos os direitos reservados
+<!-- SEÇÃO DE AVALIAÇÕES -->
+<section style="
+max-width:1000px;
+margin:50px auto 0 auto;
+padding:60px 20px;
+text-align:center;
+">
+
+<h2 style="
+color:white;
+font-size:40px;
+margin-bottom:50px;
+">
+AVALIAÇÕES DOS CLIENTES
+</h2>
+
+<div style="
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:40px;
+">
+
+<!-- CARD 1 -->
+<div style="
+background:linear-gradient(180deg,#1a0033,#0d001a);
+padding:30px;
+border-radius:25px;
+width:320px;
+box-shadow:0 20px 60px rgba(161,0,255,0.5);
+">
+<h3>@dutyred</h3>
+<div style="color:gold; font-size:22px;">★★★★★</div>
+<p style="color:#ccc; margin-top:20px;">
+Mano, a thumbnail ficou INSANA! Muito profissional.
+</p>
+</div>
+
+<!-- CARD 2 -->
+<div style="
+background:linear-gradient(180deg,#1a0033,#0d001a);
+padding:30px;
+border-radius:25px;
+width:320px;
+box-shadow:0 20px 60px rgba(161,0,255,0.5);
+">
+<h3>@jorjet777</h3>
+<div style="color:gold; font-size:22px;">★★★★★</div>
+<p style="color:#ccc; margin-top:20px;">
+Melhor designer que já contratei! Banner ficou absurdo.
+</p>
+</div>
+
+<!-- CARD 3 -->
+<div style="
+background:linear-gradient(180deg,#1a0033,#0d001a);
+padding:30px;
+border-radius:25px;
+width:320px;
+box-shadow:0 20px 60px rgba(161,0,255,0.5);
+">
+<h3>@wellinhojoga</h3>
+<div style="color:gold; font-size:22px;">★★★★★</div>
+<p style="color:#ccc; margin-top:20px;">
+Trabalho rápido e muito caprichado. Recomendo demais!
+</p>
+</div>
+
+<!-- CARD 4 -->
+<div style="
+background:linear-gradient(180deg,#1a0033,#0d001a);
+padding:30px;
+border-radius:25px;
+width:320px;
+box-shadow:0 20px 60px rgba(161,0,255,0.5);
+">
+<h3>@gordinhodocod00</h3>
+<div style="color:gold; font-size:22px;">★★★★★</div>
+<p style="color:#ccc; margin-top:20px;">
+O cara é diferenciado! Minha logo ficou profissional demais.
+</p>
+</div>
+
+<!-- CARD 5 -->
+<div style="
+background:linear-gradient(180deg,#1a0033,#0d001a);
+padding:30px;
+border-radius:25px;
+width:320px;
+box-shadow:0 20px 60px rgba(161,0,255,0.5);
+">
+<h3>@rochaarch</h3>
+<div style="color:gold; font-size:22px;">★★★★★</div>
+<p style="color:#ccc; margin-top:20px;">
+Design muito bem feito, organizado e chamativo. Vale cada real!
+</p>
+</div>
+
+</div>
+</section>
+</section>
+<div class="footer-neon-line"></div>
+
+<footer class="footer-direitos">
+    © 2026 Norbit White Design - Todos direitos reservados
+</footer>
 </footer>
 
 <a href="https://wa.me/5521983747028" class="whatsapp-float" target="_blank">
