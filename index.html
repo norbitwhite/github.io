@@ -6,146 +6,113 @@
 <title>Norbit White Design</title>
 
 <!-- Google AdSense -->
-<script async
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7653548529657471"
-  crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7653548529657471"
+crossorigin="anonymous"></script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWL4CS76LG"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-NWL4CS76LG');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NWL4CS76LG');
 </script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background: radial-gradient(circle at top,#1a0033 0%,#0a0a0a 60%);color:white;overflow-x:hidden;}
+body{background: radial-gradient(circle at top,#1a0033 0%,#000 70%);color:white;overflow-x:hidden;}
 
 /* HEADER */
-header{
-  text-align:center;
-  padding:40px 20px;
-  position:relative;
-  background:linear-gradient(160deg,#111,#1c1c1c);
-  border-bottom:1px solid rgba(161,0,255,0.3);
-  overflow:hidden;
-}
-
-header::before{
-  content:"";
-  position:absolute;
-  top:-50%;left:-50%;
-  width:200%;height:200%;
-  background:radial-gradient(circle, rgba(161,0,255,0.15) 0%, transparent 60%);
-  animation:moveLight 8s linear infinite;
-}
-@keyframes moveLight{0%{transform:rotate(0);}100%{transform:rotate(360deg);}}
-
-header::after{
-  content:"";
-  position:absolute;
-  bottom:0;left:0;
-  width:100%;height:2px;
-  background:linear-gradient(90deg,transparent,#a100ff,transparent);
-  box-shadow:0 0 15px #a100ff;
-}
-
-header h1{font-size:38px;font-weight:800;}
-header p{margin-top:8px;color:#ddd;}
+header{text-align:center;padding:40px 20px;background:linear-gradient(160deg,#111,#1c1c1c);border-bottom:1px solid rgba(161,0,255,0.3);}
+header h1{font-size:36px;font-weight:800;}
+header p{margin-top:8px;color:#ccc;}
 
 /* SLIDER */
-.slider{overflow:hidden;margin:0;}
+.slider{overflow:hidden;margin-top:20px;}
 .slider-track{display:flex;gap:20px;width:max-content;animation:scrollSlider 25s linear infinite;}
-.slide{min-width:300px;height:180px;border-radius:15px;overflow:hidden;border:1px solid rgba(161,0,255,0.5);}
-.slide img{width:100%;height:100%;object-fit:cover;transition:0.6s;}
-.slide:hover img{transform:scale(1.08);}
+.slide{min-width:280px;height:170px;border-radius:15px;overflow:hidden;border:1px solid rgba(161,0,255,0.5);}
+.slide img{width:100%;height:100%;object-fit:cover;}
 @keyframes scrollSlider{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .slider:hover .slider-track{animation-play-state:paused;}
 
-/* BLOCO ADS */
-.ad-block{
-  max-width:1100px;
-  margin:8px auto;
-  padding:0 15px;
-}
-
 /* CARDS */
-.cards-mini{display:flex;gap:15px;padding:10px 20px 20px 20px;}
-.card.mini{flex:1;}
-.card.mini img{height:150px;}
+.cards-mini{display:flex;gap:15px;padding:20px;flex-wrap:wrap;}
+.card{flex:1;min-width:260px;background:linear-gradient(160deg,#111,#1c1c1c);border-radius:20px;overflow:hidden;border:1px solid rgba(161,0,255,0.2);}
+.card img{width:100%;height:180px;object-fit:cover;}
+.card-content{padding:18px;text-align:center;}
+.price{margin:10px 0;font-weight:700;font-size:18px;color:#a100ff;}
+.btn-neon{width:100%;padding:12px;border-radius:12px;font-weight:800;border:none;background:linear-gradient(90deg,#6f00ff,#a100ff);color:#fff;cursor:pointer;}
 
-.card{
-  background:linear-gradient(160deg,#111,#1c1c1c);
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 0 25px rgba(161,0,255,0.2);
-  transition:0.4s;
-  border:1px solid rgba(161,0,255,0.2);
+/* CONTADOR */
+.counter-section{
+padding:80px 20px;
+text-align:center;
+background:radial-gradient(circle at center, rgba(140,0,255,0.25) 0%, rgba(20,0,40,0.9) 40%, #000 80%);
 }
-
-.card:hover{transform:scale(1.03);}
-.card img{width:100%;height:200px;object-fit:cover;}
-.card-content{padding:20px;}
-.price{margin:12px 0;font-weight:700;font-size:18px;color:#a100ff;}
-
-.btn-neon{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  font-weight:800;
-  text-transform:uppercase;
-  cursor:pointer;
-  border:none;
-  background:linear-gradient(90deg,#6f00ff,#a100ff);
-  color:#fff;
+.counter-container{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;}
+.counter-box{text-align:center;}
+.counter-box h2{
+font-size:60px;
+font-weight:900;
+background:linear-gradient(90deg,#8a00ff,#c000ff,#ff00ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 25px rgba(180,0,255,0.7);
 }
+.counter-box p{margin-top:10px;color:#caa6ff;}
 
 /* REVIEWS */
 .reviews{
-  max-width:1100px;
-  margin:50px auto;
-  padding:30px 20px;
-  text-align:center;
+padding:60px 20px;
+background:linear-gradient(180deg,#050008,#12001f);
+text-align:center;
 }
-.reviews h2{
-  font-size:36px;
-  margin-bottom:40px;
+.reviews-title{
+font-size:30px;
+font-weight:900;
+margin-bottom:40px;
+background:linear-gradient(90deg,#8a00ff,#c000ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
-.review-container{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.review-container{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
 .review-card{
-  background:linear-gradient(180deg,#1a0033,#0d001a);
-  padding:24px;
-  border-radius:16px;
-  width:280px;
+background:linear-gradient(180deg,#1a0033,#0d001a);
+padding:22px;
+border-radius:18px;
+box-shadow:0 0 20px rgba(140,0,255,0.2);
+text-align:center;
 }
-.review-card h3{color:#a100ff;margin-bottom:8px;}
-.stars{color:#FFD700;margin-bottom:8px;}
-.review-card p{color:#ddd;font-size:14px;}
+.review-card .stars{
+color:#FFD700;
+margin-bottom:10px;
+}
+.review-card p{
+color:#ddd;
+font-size:14px;
+margin-bottom:10px;
+}
+.review-card span{
+display:block;
+color:#a100ff;
+font-weight:700;
+}
 
-footer{
-  text-align:center;
-  padding:36px;
-  background:#0a0a0a;
-  margin-top:40px;
-  color:#aaa;
-  border-top:2px solid #a100ff;
-}
+/* FOOTER */
+footer{text-align:center;padding:30px;background:#000;margin-top:40px;color:#aaa;border-top:2px solid #a100ff;}
+footer a{color:#a100ff;text-decoration:none;font-weight:700;}
+footer a:hover{text-decoration:underline;}
 
-.whatsapp-float{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:#25D366;
-  width:56px;height:56px;
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-}
+/* WHATSAPP */
+.whatsapp-float{position:fixed;bottom:18px;right:18px;background:#25D366;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 .whatsapp-float img{width:30px;}
 
 @media(max-width:768px){
-  .cards-mini{flex-direction:column;}
+.cards-mini{flex-direction:column;}
 }
 </style>
 </head>
@@ -153,97 +120,111 @@ footer{
 <body>
 
 <header>
-  <h1>Norbit White Design</h1>
-  <p>Design profissional para quem quer crescer</p>
+<h1>Norbit White Design</h1>
+<p>Design profissional para quem quer crescer</p>
 
-  <div class="slider">
-    <div class="slider-track">
-      <div class="slide"><img src="slide1.jpg"></div>
-      <div class="slide"><img src="slide2.jpg"></div>
-      <div class="slide"><img src="slide3.jpg"></div>
-      <div class="slide"><img src="slide4.jpg"></div>
-    </div>
-  </div>
+<div class="slider">
+<div class="slider-track">
+<div class="slide"><img src="slide1.jpg"></div>
+<div class="slide"><img src="slide2.jpg"></div>
+<div class="slide"><img src="slide3.jpg"></div>
+<div class="slide"><img src="slide4.jpg"></div>
+<div class="slide"><img src="slide1.jpg"></div>
+<div class="slide"><img src="slide2.jpg"></div>
+</div>
+</div>
 </header>
 
-<!-- ANÚNCIO 1 -->
-<div class="ad-block">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-7653548529657471"
-       data-ad-slot="4778061523"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+<section class="cards-mini">
+<div class="card">
+<img src="banner2.jpg">
+<div class="card-content">
+<h2>Criação de Logo</h2>
+<p>Logo profissional para streamers.</p>
+<div class="price">R$ 5</div>
+<button class="btn-neon" onclick="window.location.href='https://wa.me/5521983747028'">CHAMAR NO WHATSAPP</button>
+</div>
 </div>
 
-<section class="cards-mini">
-  <div class="card mini">
-    <img src="banner2.jpg">
-    <div class="card-content">
-      <h2>Criação de Logo</h2>
-      <p>Logo profissional e personalizada para streamers.</p>
-      <div class="price">R$ 5</div>
-      <button class="btn-neon">CHAMAR NO WHATSAPP</button>
-    </div>
-  </div>
-
-  <div class="card mini">
-    <img src="banner3.jpg">
-    <div class="card-content">
-      <h2>Banner Gamer</h2>
-      <p>Arte profissional para YouTube e Twitch.</p>
-      <div class="price">R$ 5</div>
-      <button class="btn-neon">CHAMAR NO WHATSAPP</button>
-    </div>
-  </div>
+<div class="card">
+<img src="banner3.jpg">
+<div class="card-content">
+<h2>Banner Gamer</h2>
+<p>Arte profissional para YouTube e Twitch.</p>
+<div class="price">R$ 5</div>
+<button class="btn-neon" onclick="window.location.href='https://wa.me/5521983747028'">CHAMAR NO WHATSAPP</button>
+</div>
+</div>
 </section>
 
-<!-- ANÚNCIO 2 -->
-<div class="ad-block">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-7653548529657471"
-       data-ad-slot="4778061523"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+<section class="counter-section">
+<div class="counter-container">
+<div class="counter-box">
+<h2 class="counter" data-target="50">0</h2>
+<p>Clientes Satisfeitos</p>
 </div>
+<div class="counter-box">
+<h2 class="counter" data-target="200">0</h2>
+<p>Artes Criadas</p>
+</div>
+<div class="counter-box">
+<h2 class="counter" data-target="5">0</h2>
+<p>Avaliação Média ⭐</p>
+</div>
+</div>
+</section>
 
 <section class="reviews">
-  <h2>AVALIAÇÕES</h2>
-  <div class="review-container">
-    <div class="review-card">
-      <h3>@dutyred</h3>
-      <div class="stars">★★★★★</div>
-      <p>Mano, a thumbnail ficou INSANA! Muito profissional.</p>
-    </div>
-
-    <div class="review-card">
-      <h3>@jorjet777</h3>
-      <div class="stars">★★★★★</div>
-      <p>Melhor designer que já contratei! Banner ficou absurdo.</p>
-    </div>
-
-    <div class="review-card">
-      <h3>@gordinhodocod00</h3>
-      <div class="stars">★★★★★</div>
-      <p>O cara é diferenciado! Minha logo ficou profissional demais.</p>
-    </div>
-  </div>
+<h2 class="reviews-title">AVALIAÇÕES</h2>
+<div class="review-container">
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>Mano, a thumbnail ficou INSANA! Muito profissional.</p>
+<span>@dutyred</span>
+</div>
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>Melhor designer que já contratei! Banner ficou absurdo.</p>
+<span>@jorjet777</span>
+</div>
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<p>Minha logo ficou profissional demais. Trabalho rápido e de qualidade.</p>
+<span>@gordinhodocod00</span>
+</div>
+</div>
 </section>
 
 <footer>
-  © 2026 Norbit White Design - Todos direitos reservados
+<a href="politica.html">Política de Privacidade</a> |
+<a href="termos.html">Termos de Uso</a> |
+<a href="contato.html">Contato</a>
+<br><br>
+© 2026 Norbit White Design - Todos direitos reservados
 </footer>
 
 <a href="https://wa.me/5521983747028" class="whatsapp-float" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
+
+<script>
+const counters=document.querySelectorAll('.counter');
+const speed=200;
+counters.forEach(counter=>{
+const updateCount=()=>{
+const target=+counter.getAttribute('data-target');
+const count=+counter.innerText;
+const inc=target/speed;
+if(count<target){
+counter.innerText=Math.ceil(count+inc);
+setTimeout(updateCount,10);
+}else{
+counter.innerText=target;
+}
+};
+updateCount();
+});
+</script>
 
 </body>
 </html>
