@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campeonato Warzone - Norbit White</title>
+
+<style>
+:root{
+  --bg1:#12001f;
+  --bg2:#000;
+  --card1:#160028;
+  --card2:#0b0014;
+  --line:rgba(161,0,255,0.28);
+  --soft:rgba(255,255,255,0.06);
+  --text:#fff;
+  --muted:#d9c0ff;
+  --muted2:#bfa7ff;
+  --grad:linear-gradient(90deg,#6f00ff,#a100ff,#ff00ff);
+  --glow:0 0 35px rgba(161,0,255,0.22);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,Arial,sans-serif;}
+body{
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(161,0,255,0.25), transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(255,0,255,0.18), transparent 40%),
+    radial-gradient(circle at top, #1a0033 0%, var(--bg2) 70%);
+  overflow-x:hidden;
+  text-align:center;
+}
+
+/* brilho de fundo */
+.bg-grid{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  background-image:
+    linear-gradient(to right, rgba(161,0,255,0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(161,0,255,0.12) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* header */
+.header{
+  padding:68px 20px 34px;
+  background:linear-gradient(160deg,#111,#1c1c1c);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+.header::after{
+  content:"";
+  position:absolute;
+  inset:-120px -120px auto -120px;
+  height:220px;
+  background:radial-gradient(circle, rgba(161,0,255,0.28), transparent 60%);
+  filter:blur(8px);
+}
+.header h1{
+  position:relative;
+  font-size:40px;
+  font-weight:950;
+  letter-spacing:1px;
+  background:linear-gradient(90deg,#8a00ff,#c000ff,#ff00ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.header p{
+  position:relative;
+  margin-top:12px;
+  color:var(--muted);
+  font-weight:650;
+  line-height:1.5;
+}
+
+/* container */
+.wrapper{
+  max-width:960px;
+  margin:auto;
+  padding:26px 18px 70px;
+}
+
+/* hero */
+.hero{
+  margin-top:18px;
+  padding:26px 18px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(161,0,255,0.22), transparent 45%),
+    radial-gradient(circle at 80% 15%, rgba(255,0,255,0.15), transparent 40%),
+    linear-gradient(180deg, rgba(22,0,40,0.75), rgba(0,0,0,0.92));
+  border:1px solid rgba(161,0,255,0.32);
+  box-shadow: var(--glow);
+  animation: floatIn .6s ease both;
+}
+.hero h2{
+  font-size:16px;
+  font-weight:900;
+  color:#fff;
+  letter-spacing:.8px;
+  opacity:.95;
+}
+.hero-info{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.hero-box{
+  min-width:180px;
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(161,0,255,0.18);
+  backdrop-filter: blur(6px);
+  transition: transform .2s ease, border-color .2s ease;
+}
+.hero-box:hover{transform:translateY(-2px); border-color:rgba(161,0,255,0.35);}
+.hero-box strong{
+  display:block;
+  font-size:12px;
+  color:#fff;
+  opacity:.75;
+  letter-spacing:.6px;
+}
+.hero-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:900;
+  font-size:18px;
+  color:var(--muted);
+}
+
+/* countdown */
+.countdown{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.time{
+  width:110px;
+  padding:12px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(161,0,255,0.18);
+}
+.time b{
+  display:block;
+  font-size:22px;
+  font-weight:950;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.time small{
+  display:block;
+  margin-top:2px;
+  color:var(--muted2);
+  font-weight:700;
+  letter-spacing:.3px;
+}
+
+/* cards */
+.section{margin-top:26px;}
+.card{
+  margin-top:16px;
+  padding:26px 20px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(161,0,255,0.18), transparent 45%),
+    linear-gradient(180deg, var(--card1), var(--card2));
+  border:1px solid rgba(161,0,255,0.26);
+  box-shadow:0 0 26px rgba(140,0,255,0.12);
+  animation: floatIn .6s ease both;
+}
+.card h2{
+  font-size:18px;
+  font-weight:950;
+  letter-spacing:.8px;
+  margin-bottom:16px;
+}
+
+/* list items */
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:center;
+}
+.list-item{
+  width:min(620px, 100%);
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(161,0,255,0.18);
+  color:var(--muted);
+  font-weight:800;
+  letter-spacing:.2px;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.list-item:hover{transform:translateY(-2px); border-color:rgba(161,0,255,0.36);}
+
+/* PIX */
+.pix-area{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+.qr{
+  width:230px;
+  height:230px;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid rgba(161,0,255,0.3);
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 0 30px rgba(161,0,255,0.12);
+}
+.qr img{width:100%;height:100%;object-fit:cover;}
+.pix-key{
+  width:min(700px, 100%);
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(161,0,255,0.20);
+  font-weight:900;
+  word-break:break-all;
+}
+.helper{
+  width:min(700px, 100%);
+  color:var(--muted2);
+  font-weight:650;
+  line-height:1.5;
+}
+
+/* buttons */
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:6px;
+}
+.btn{
+  padding:13px 18px;
+  border-radius:16px;
+  border:none;
+  cursor:pointer;
+  font-weight:950;
+  letter-spacing:.5px;
+  color:#fff;
+  background:var(--grad);
+  box-shadow:0 0 22px rgba(161,0,255,0.22);
+  transition: transform .15s ease, filter .15s ease;
+}
+.btn:hover{filter:brightness(1.06);}
+.btn:active{transform:scale(.98);}
+.btn-alt{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(161,0,255,0.24);
+  box-shadow:none;
+}
+.status{
+  width:min(700px, 100%);
+  margin-top:10px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(0,0,0,0.50);
+  border:1px solid rgba(161,0,255,0.18);
+  color:var(--muted);
+  font-weight:800;
+}
+
+/* footer */
+.footer{
+  padding:26px 18px;
+  border-top:2px solid #a100ff;
+  background:#000;
+  color:#aaa;
+  font-size:14px;
+}
+
+/* animation */
+@keyframes floatIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* mobile */
+@media(max-width:620px){
+  .header h1{font-size:32px;}
+  .time{width:95px;}
+}
+</style>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+
+<div class="header">
+  <h1>CAMPEONATO WARZONE</h1>
+  <p>Premiação em dinheiro e inscrição gratuita no próximo campeonato para o terceiro lugar</p>
+</div>
+
+<div class="wrapper">
+
+  <div class="hero">
+    <h2>INFORMAÇÕES DO EVENTO</h2>
+
+    <div class="hero-info">
+      <div class="hero-box">
+        <strong>DATA</strong>
+        <span>04/04/2026</span>
+      </div>
+      <div class="hero-box">
+        <strong>HORÁRIO</strong>
+        <span>20:00 (BRT)</span>
+      </div>
+      <div class="hero-box">
+        <strong>PLATAFORMA</strong>
+        <span>WARZONE</span>
+      </div>
+    </div>
+
+    <div class="countdown" aria-label="Contagem regressiva">
+      <div class="time"><b id="d">00</b><small>DIAS</small></div>
+      <div class="time"><b id="h">00</b><small>HORAS</small></div>
+      <div class="time"><b id="m">00</b><small>MIN</small></div>
+      <div class="time"><b id="s">00</b><small>SEG</small></div>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <div class="card">
+      <h2>PREMIAÇÃO</h2>
+      <div class="list">
+        <div class="list-item">PRIMEIRO LUGAR — R$ 100</div>
+        <div class="list-item">SEGUNDO LUGAR — R$ 60</div>
+        <div class="list-item">TERCEIRO LUGAR — INSCRIÇÃO GRATUITA NO PRÓXIMO CAMPEONATO</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>PAGAMENTO VIA PIX</h2>
+
+      <div class="pix-area">
+        <div class="helper">
+          Escaneie o QR Code ou copie a chave PIX. Depois clique em "Verificar Pagamento".
+        </div>
+
+        <div class="qr">
+          <img src="pix-qr.png" alt="QR Code PIX">
+        </div>
+
+        <div class="pix-key" id="pixKey">SUA_CHAVE_PIX_AQUI</div>
+
+        <div class="buttons">
+          <button class="btn-alt btn" onclick="copyPix()">COPIAR CHAVE</button>
+          <button class="btn" onclick="verifyPayment()">VERIFICAR PAGAMENTO</button>
+          <button class="btn-alt btn" onclick="window.open('https://wa.me/5521983747028','_blank')">ENVIAR COMPROVANTE</button>
+        </div>
+
+        <div class="status" id="statusBox">Status: aguardando pagamento</div>
+
+        <div class="helper">
+          Verificação automática real só funciona com servidor/gateway (Mercado Pago ou PagSeguro). Se ainda não tiver, envie o comprovante no WhatsApp.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>REGRAS RÁPIDAS</h2>
+      <div class="list">
+        <div class="list-item">PROIBIDO TRAPAÇA, CHEAT OU GLITCH</div>
+        <div class="list-item">RESPEITO TOTAL NO CHAT E NAS PARTIDAS</div>
+        <div class="list-item">VALIDAÇÃO PODE PEDIR PRINT OU CLIP</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2026 Norbit White • Campeonato Warzone
+</div>
+
+<script>
+function pad(n){return String(n).padStart(2,'0');}
+
+function setStatus(msg){
+  document.getElementById("statusBox").innerText = "Status: " + msg;
+}
+
+function copyPix(){
+  const key = document.getElementById("pixKey").innerText.trim();
+  navigator.clipboard.writeText(key).then(()=>{
+    setStatus("Chave copiada com sucesso");
+  }).catch(()=>{
+    setStatus("Não foi possível copiar automaticamente");
+  });
+}
+
+/* contador até 04/04/2026 20:00 (BRT) */
+(function countdown(){
+  // horário local do usuário (BRT), então basta usar Date(ano, mes-1, dia, hora)
+  const target = new Date(2026, 3, 4, 20, 0, 0); // Abril = 3
+  const now = new Date();
+  let diff = target - now;
+
+  if(diff < 0) diff = 0;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const mins = Math.floor((diff / (1000*60)) % 60);
+  const secs = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('d').textContent = pad(days);
+  document.getElementById('h').textContent = pad(hours);
+  document.getElementById('m').textContent = pad(mins);
+  document.getElementById('s').textContent = pad(secs);
+
+  setTimeout(countdown, 1000);
+})();
+
+/*
+  Verificação automática real só funciona com backend.
+  Se você configurar, use um endpoint assim:
+  /api/pagamento/status?ref=CAMPEONATO-0404
+*/
+async function verifyPayment(){
+  setStatus("Verificando pagamento...");
+  try{
+    const ref = "CAMPEONATO-0404";
+    const res = await fetch(`/api/pagamento/status?ref=${encodeURIComponent(ref)}`, {cache:"no-store"});
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+
+    if(data && data.pago === true){
+      setStatus("Pagamento confirmado. Inscrição validada.");
+    }else{
+      setStatus("Pagamento ainda não confirmado. Tente novamente em instantes.");
+    }
+  }catch{
+    setStatus("Verificação automática não configurada. Envie o comprovante no WhatsApp.");
+  }
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campeonato Warzone - Norbit White</title>
+
+<style>
+:root{
+  --bg1:#12001f;
+  --bg2:#000;
+  --card1:#160028;
+  --card2:#0b0014;
+  --line:rgba(161,0,255,0.28);
+  --soft:rgba(255,255,255,0.06);
+  --text:#fff;
+  --muted:#d9c0ff;
+  --muted2:#bfa7ff;
+  --grad:linear-gradient(90deg,#6f00ff,#a100ff,#ff00ff);
+  --glow:0 0 35px rgba(161,0,255,0.22);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,Arial,sans-serif;}
+body{
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(161,0,255,0.25), transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(255,0,255,0.18), transparent 40%),
+    radial-gradient(circle at top, #1a0033 0%, var(--bg2) 70%);
+  overflow-x:hidden;
+  text-align:center;
+}
+
+/* brilho de fundo */
+.bg-grid{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  background-image:
+    linear-gradient(to right, rgba(161,0,255,0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(161,0,255,0.12) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* header */
+.header{
+  padding:68px 20px 34px;
+  background:linear-gradient(160deg,#111,#1c1c1c);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+.header::after{
+  content:"";
+  position:absolute;
+  inset:-120px -120px auto -120px;
+  height:220px;
+  background:radial-gradient(circle, rgba(161,0,255,0.28), transparent 60%);
+  filter:blur(8px);
+}
+.header h1{
+  position:relative;
+  font-size:40px;
+  font-weight:950;
+  letter-spacing:1px;
+  background:linear-gradient(90deg,#8a00ff,#c000ff,#ff00ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.header p{
+  position:relative;
+  margin-top:12px;
+  color:var(--muted);
+  font-weight:650;
+  line-height:1.5;
+}
+
+/* container */
+.wrapper{
+  max-width:960px;
+  margin:auto;
+  padding:26px 18px 70px;
+}
+
+/* hero */
+.hero{
+  margin-top:18px;
+  padding:26px 18px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(161,0,255,0.22), transparent 45%),
+    radial-gradient(circle at 80% 15%, rgba(255,0,255,0.15), transparent 40%),
+    linear-gradient(180deg, rgba(22,0,40,0.75), rgba(0,0,0,0.92));
+  border:1px solid rgba(161,0,255,0.32);
+  box-shadow: var(--glow);
+  animation: floatIn .6s ease both;
+}
+.hero h2{
+  font-size:16px;
+  font-weight:900;
+  color:#fff;
+  letter-spacing:.8px;
+  opacity:.95;
+}
+.hero-info{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.hero-box{
+  min-width:180px;
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(161,0,255,0.18);
+  backdrop-filter: blur(6px);
+  transition: transform .2s ease, border-color .2s ease;
+}
+.hero-box:hover{transform:translateY(-2px); border-color:rgba(161,0,255,0.35);}
+.hero-box strong{
+  display:block;
+  font-size:12px;
+  color:#fff;
+  opacity:.75;
+  letter-spacing:.6px;
+}
+.hero-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:900;
+  font-size:18px;
+  color:var(--muted);
+}
+
+/* countdown */
+.countdown{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.time{
+  width:110px;
+  padding:12px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(161,0,255,0.18);
+}
+.time b{
+  display:block;
+  font-size:22px;
+  font-weight:950;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.time small{
+  display:block;
+  margin-top:2px;
+  color:var(--muted2);
+  font-weight:700;
+  letter-spacing:.3px;
+}
+
+/* cards */
+.section{margin-top:26px;}
+.card{
+  margin-top:16px;
+  padding:26px 20px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(161,0,255,0.18), transparent 45%),
+    linear-gradient(180deg, var(--card1), var(--card2));
+  border:1px solid rgba(161,0,255,0.26);
+  box-shadow:0 0 26px rgba(140,0,255,0.12);
+  animation: floatIn .6s ease both;
+}
+.card h2{
+  font-size:18px;
+  font-weight:950;
+  letter-spacing:.8px;
+  margin-bottom:16px;
+}
+
+/* list items */
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:center;
+}
+.list-item{
+  width:min(620px, 100%);
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(161,0,255,0.18);
+  color:var(--muted);
+  font-weight:800;
+  letter-spacing:.2px;
+  transition: transform .18s ease, border-color .18s ease;
+}
+.list-item:hover{transform:translateY(-2px); border-color:rgba(161,0,255,0.36);}
+
+/* PIX */
+.pix-area{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+.qr{
+  width:230px;
+  height:230px;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid rgba(161,0,255,0.3);
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 0 30px rgba(161,0,255,0.12);
+}
+.qr img{width:100%;height:100%;object-fit:cover;}
+.pix-key{
+  width:min(700px, 100%);
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(161,0,255,0.20);
+  font-weight:900;
+  word-break:break-all;
+}
+.helper{
+  width:min(700px, 100%);
+  color:var(--muted2);
+  font-weight:650;
+  line-height:1.5;
+}
+
+/* buttons */
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:6px;
+}
+.btn{
+  padding:13px 18px;
+  border-radius:16px;
+  border:none;
+  cursor:pointer;
+  font-weight:950;
+  letter-spacing:.5px;
+  color:#fff;
+  background:var(--grad);
+  box-shadow:0 0 22px rgba(161,0,255,0.22);
+  transition: transform .15s ease, filter .15s ease;
+}
+.btn:hover{filter:brightness(1.06);}
+.btn:active{transform:scale(.98);}
+.btn-alt{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(161,0,255,0.24);
+  box-shadow:none;
+}
+.status{
+  width:min(700px, 100%);
+  margin-top:10px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(0,0,0,0.50);
+  border:1px solid rgba(161,0,255,0.18);
+  color:var(--muted);
+  font-weight:800;
+}
+
+/* footer */
+.footer{
+  padding:26px 18px;
+  border-top:2px solid #a100ff;
+  background:#000;
+  color:#aaa;
+  font-size:14px;
+}
+
+/* animation */
+@keyframes floatIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* mobile */
+@media(max-width:620px){
+  .header h1{font-size:32px;}
+  .time{width:95px;}
+}
+</style>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+
+<div class="header">
+  <h1>CAMPEONATO WARZONE</h1>
+  <p>Premiação em dinheiro e inscrição gratuita no próximo campeonato para o terceiro lugar</p>
+</div>
+
+<div class="wrapper">
+
+  <div class="hero">
+    <h2>INFORMAÇÕES DO EVENTO</h2>
+
+    <div class="hero-info">
+      <div class="hero-box">
+        <strong>DATA</strong>
+        <span>04/04/2026</span>
+      </div>
+      <div class="hero-box">
+        <strong>HORÁRIO</strong>
+        <span>20:00 (BRT)</span>
+      </div>
+      <div class="hero-box">
+        <strong>PLATAFORMA</strong>
+        <span>WARZONE</span>
+      </div>
+    </div>
+
+    <div class="countdown" aria-label="Contagem regressiva">
+      <div class="time"><b id="d">00</b><small>DIAS</small></div>
+      <div class="time"><b id="h">00</b><small>HORAS</small></div>
+      <div class="time"><b id="m">00</b><small>MIN</small></div>
+      <div class="time"><b id="s">00</b><small>SEG</small></div>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <div class="card">
+      <h2>PREMIAÇÃO</h2>
+      <div class="list">
+        <div class="list-item">PRIMEIRO LUGAR — R$ 100</div>
+        <div class="list-item">SEGUNDO LUGAR — R$ 60</div>
+        <div class="list-item">TERCEIRO LUGAR — INSCRIÇÃO GRATUITA NO PRÓXIMO CAMPEONATO</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>PAGAMENTO VIA PIX</h2>
+
+      <div class="pix-area">
+        <div class="helper">
+          Escaneie o QR Code ou copie a chave PIX. Depois clique em "Verificar Pagamento".
+        </div>
+
+        <div class="qr">
+          <img src="pix-qr.png" alt="QR Code PIX">
+        </div>
+
+        <div class="pix-key" id="pixKey">SUA_CHAVE_PIX_AQUI</div>
+
+        <div class="buttons">
+          <button class="btn-alt btn" onclick="copyPix()">COPIAR CHAVE</button>
+          <button class="btn" onclick="verifyPayment()">VERIFICAR PAGAMENTO</button>
+          <button class="btn-alt btn" onclick="window.open('https://wa.me/5521983747028','_blank')">ENVIAR COMPROVANTE</button>
+        </div>
+
+        <div class="status" id="statusBox">Status: aguardando pagamento</div>
+
+        <div class="helper">
+          Verificação automática real só funciona com servidor/gateway (Mercado Pago ou PagSeguro). Se ainda não tiver, envie o comprovante no WhatsApp.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>REGRAS RÁPIDAS</h2>
+      <div class="list">
+        <div class="list-item">PROIBIDO TRAPAÇA, CHEAT OU GLITCH</div>
+        <div class="list-item">RESPEITO TOTAL NO CHAT E NAS PARTIDAS</div>
+        <div class="list-item">VALIDAÇÃO PODE PEDIR PRINT OU CLIP</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2026 Norbit White • Campeonato Warzone
+</div>
+
+<script>
+function pad(n){return String(n).padStart(2,'0');}
+
+function setStatus(msg){
+  document.getElementById("statusBox").innerText = "Status: " + msg;
+}
+
+function copyPix(){
+  const key = document.getElementById("pixKey").innerText.trim();
+  navigator.clipboard.writeText(key).then(()=>{
+    setStatus("Chave copiada com sucesso");
+  }).catch(()=>{
+    setStatus("Não foi possível copiar automaticamente");
+  });
+}
+
+/* contador até 04/04/2026 20:00 (BRT) */
+(function countdown(){
+  // horário local do usuário (BRT), então basta usar Date(ano, mes-1, dia, hora)
+  const target = new Date(2026, 3, 4, 20, 0, 0); // Abril = 3
+  const now = new Date();
+  let diff = target - now;
+
+  if(diff < 0) diff = 0;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const mins = Math.floor((diff / (1000*60)) % 60);
+  const secs = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('d').textContent = pad(days);
+  document.getElementById('h').textContent = pad(hours);
+  document.getElementById('m').textContent = pad(mins);
+  document.getElementById('s').textContent = pad(secs);
+
+  setTimeout(countdown, 1000);
+})();
+
+/*
+  Verificação automática real só funciona com backend.
+  Se você configurar, use um endpoint assim:
+  /api/pagamento/status?ref=CAMPEONATO-0404
+*/
+async function verifyPayment(){
+  setStatus("Verificando pagamento...");
+  try{
+    const ref = "CAMPEONATO-0404";
+    const res = await fetch(`/api/pagamento/status?ref=${encodeURIComponent(ref)}`, {cache:"no-store"});
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+
+    if(data && data.pago === true){
+      setStatus("Pagamento confirmado. Inscrição validada.");
+    }else{
+      setStatus("Pagamento ainda não confirmado. Tente novamente em instantes.");
+    }
+  }catch{
+    setStatus("Verificação automática não configurada. Envie o comprovante no WhatsApp.");
+  }
+}
+</script>
+
+</body>
+</html>
