@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   try {
 
-    const idempotencyKey = crypto.randomUUID();
+    const idempotencyKey = Date.now().toString(); // ✅ não quebra build
 
     const mpResponse = await fetch(
       "https://api.mercadopago.com/v1/payments",
