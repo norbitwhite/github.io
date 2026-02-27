@@ -1,17 +1,16 @@
-function setCors(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "https://norbitwhite.github.io");
+export default async function handler(req, res) {
+  // ===== CORS =====
+  const origin = req.headers.origin || "*";
+  res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-}
+  res.setHeader("Access-Control-Allow-Credentials", "true");
 
-export default async function handler(req, res) {
-  setCors(req, res);
+  if (req.method === "OPTIONS") {
+    return res.status(204).end();
+  }
 
-  // Preflight (CORS)
-  if (req.method === "OPTIONS") return res.status(204).end();
-
-  // Essa rota é GET
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Método não permitido. Use GET." });
   }
@@ -19,42 +18,38 @@ export default async function handler(req, res) {
   try {
     const token = process.env.MP_ACCESS_TOKEN;
     if (!token) {
-      return res.status(500).json({
-        error: "MP_ACCESS_TOKEN não configurado no Vercel (Environment Variables)."
-      });
+      return res.status(500).json({ error: "MP_ACCESS_TOKEN não configurado na Vercel." });
     }
 
-    const payment_id = req.query?.payment_id;
-
-    if (!payment_id) {
-      return res.status(400).json({ error: "payment_id é obrigatório" });
+    const paymentId = (req.query.payment_id || "").toString().trim();
+    if (!paymentId) {
+      return res.status(400).json({ error: "payment_id obrigatório" });
     }
 
-    const mpRes = await fetch(`https://api.mercadopago.com/v1/payments/${payment_id}`, {
+    const mpRes = await fetch(`https://api.mercadopago.com/v1/payments/${encodeURIComponent(paymentId)}`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
-      }
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
 
-    const mpData = await mpRes.json();
+    const mpJson = await mpRes.json().catch(() => ({}));
 
     if (!mpRes.ok) {
       return res.status(mpRes.status).json({
-        error: "Erro ao consultar pagamento no Mercado Pago",
-        details: mpData
+        error: "Erro ao consultar status no Mercado Pago",
+        mp_status: mpRes.status,
+        mp_response: mpJson,
       });
     }
 
     return res.status(200).json({
-      id: mpData.id,
-      status: mpData.status,
-      status_detail: mpData.status_detail,
-      transaction_amount: mpData.transaction_amount
+      payment_id: String(mpJson?.id || paymentId),
+      status: mpJson?.status || "unknown",
+      status_detail: mpJson?.status_detail || "",
     });
-
   } catch (err) {
-    return res.status(500).json({ error: err.message || "Erro interno" });
+    return res.status(500).json({ error: "Falha interna", message: err?.message || String(err) });
   }
 }
